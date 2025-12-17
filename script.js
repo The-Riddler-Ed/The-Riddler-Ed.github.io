@@ -42,6 +42,3 @@ function updateCountdown() {
 }
 // 页面加载后启动倒计时
 setTimeout(updateCountdown, 2000); // 延迟2秒启动，让用户先看到文字
-git add .
-git commit -m "首次提交：谜语人线索页面"
-git push -u origin main

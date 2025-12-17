@@ -50,6 +50,3 @@ body {
     0%, 100% { opacity: 1; }
     50% { opacity: 0.3; }
 }
-git add .
-git commit -m "首次提交：谜语人线索页面"
-git push -u origin main
