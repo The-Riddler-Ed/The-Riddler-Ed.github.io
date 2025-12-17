@@ -31,7 +31,7 @@ function updateCountdown() {
     let minutes = Math.floor(totalSeconds / 60);
     let seconds = totalSeconds % 60;
     countdownEl.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-    
+
     if (totalSeconds > 0) {
         totalSeconds--;
         setTimeout(updateCountdown, 1000);
