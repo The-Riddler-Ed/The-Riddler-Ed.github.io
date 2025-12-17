@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>你收到了一条新线索</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- 引入一个好用的打字机效果库 -->
+    <script src="https://unpkg.com/typewriter-effect@latest/dist/core.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1 id="glowing-question">?</h1>
+        
+        <div class="terminal">
+            <p>> 讯息来源: 未知</p>
+            <p>> 接收时间: <span id="current-time"></span></p>
+            <p>> 状态: <span class="blinking-text">已解密</span></p>
+            <div class="separator"></div>
+            
+            <!-- 这个div里的文字将实现打字机效果 -->
+            <div id="typewriter-text"></div>
+            
+            <div class="separator"></div>
+            <p>> 线索完整性: ███████░░░ 70%</p>
+            <p>> 下一段讯息倒计时: <span class="blinking-text" id="countdown">24:00:00</span></p>
+        </div>
+        
+        <p class="footer">此讯息为单向传输。任何追溯尝试都将被记录。— R</p>
+    </div>
+
+    <!-- 链接我们自己的JavaScript文件 -->
+    <script src="script.js"></script>
+</body>
+</html>
+git add .
+git commit -m "首次提交：谜语人线索页面"
+git push -u origin main
