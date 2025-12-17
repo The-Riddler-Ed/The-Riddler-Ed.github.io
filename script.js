@@ -31,6 +31,7 @@ function updateCountdown() {
     let minutes = Math.floor(totalSeconds / 60);
     let seconds = totalSeconds % 60;
     countdownEl.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+    
     if (totalSeconds > 0) {
         totalSeconds--;
         setTimeout(updateCountdown, 1000);
@@ -39,6 +40,5 @@ function updateCountdown() {
         countdownEl.style.animation = "none"; // 倒计时结束时停止闪烁
     }
 }
-
 // 页面加载后启动倒计时
 setTimeout(updateCountdown, 2000); // 延迟2秒启动，让用户先看到文字
