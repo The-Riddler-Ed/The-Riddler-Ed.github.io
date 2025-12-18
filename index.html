@@ -4,11 +4,10 @@
     <meta charset="UTF-8">
     <title>你收到了一条新线索</title>
     <link rel="stylesheet" href="style.css">
-    <!-- 引入一个好用的打字机效果库 (关键修正：unpkg) -->
 </head>
 <body>
     <div class="container">
-        <h1 id="glowing-question">?</h1> <!-- 修正：补充了问号内容 -->
+        <h1 id="glowing-question">?</h1>
 
         <div class="terminal">
             <p>> 讯息来源: 未知</p>
@@ -16,20 +15,21 @@
             <p>> 状态: <span class="blinking-text">已解密</span></p>
             <div class="separator"></div>
 
-            <!-- 这个div里的文字将实现打字机效果 -->
+            <!-- 打字机效果区域 -->
             <div id="typewriter-text"></div>
 
             <div class="separator"></div>
-            <p>> 线索完整性: ███████░░░ 70%</p>
-            <p>> 下一段讯息倒计时: <span class="blinking-text" id="countdown">24:00:00</span></p>
+            <p>> 线索完整性: <span id="progress-bar">░░░░░░░░░░ 0%</span></p>
             <p>> 当前任务: 解码<span id="hidden-link" style="color:#39FF14; cursor:pointer; text-decoration:underline">█闪烁的绿色区块█</span></p>
+            <p>> 下一段讯息倒计时: <span class="blinking-text" id="countdown">24:00:00</span></p>
         </div>
 
         <p class="footer">此讯息为单向传输。任何追溯尝试都将被记录。— R</p>
     </div>
 
-    <!-- 链接我们自己的JavaScript文件 -->
-    <script src="script.js"></script>    
+    <!-- 主脚本 -->
+    <script src="script.js"></script>
+    
     <!-- ====== 谜语人风格版权声明 ====== -->
     <footer class="riddler-footer">
         <div class="disclaimer-toggle" onclick="toggleDisclaimer()">
@@ -47,13 +47,13 @@
                 <p>• 所有剧集片段仅用于评论、研究和教育目的</p>
                 <p>• 无任何商业用途，不产生收入</p>
                 <p>• 项目代码开源：<a href="https://github.com/The-Riddler-Ed/The-Riddler-Ed.github.io" target="_blank">GitHub仓库</a></p>
-                <p>• 如有版权问题请联系：<span class="contact">2141874449@qq.com</span></p>
+                <p>• 如有版权问题请联系：<span class="contact">theriddler.ed.project@gmail.com</span></p>
             </div>
         </div>
     </footer>
 
     <style>
-    /* 版权声明样式 - 与你的网站主题完全匹配 */
+    /* 版权声明样式 */
     .riddler-footer {
         margin-top: 30px;
         padding: 10px;
@@ -157,7 +157,6 @@
             content.style.display = 'block';
             arrow.textContent = '▲';
             arrow.style.transform = 'rotate(180deg)';
-            // 打字机效果显示文本
             typewriteDisclaimer();
         } else {
             content.style.display = 'none';
@@ -171,17 +170,15 @@
         const textElement = document.querySelector('.disclaimer-text');
         const originalHTML = textElement.innerHTML;
         
-        // 保存原始HTML结构
         const tempDiv = document.createElement('div');
         tempDiv.innerHTML = originalHTML;
         const plainText = tempDiv.textContent || tempDiv.innerText;
         
-        // 清空并开始打字效果
         textElement.innerHTML = '';
         textElement.style.opacity = '1';
         
         let i = 0;
-        const speed = 35; // 打字速度（毫秒/字符）
+        const speed = 35;
         
         function typeWriter() {
             if (i < plainText.length) {
@@ -189,12 +186,10 @@
                 i++;
                 setTimeout(typeWriter, speed);
             } else {
-                // 动画结束后恢复完整HTML（带样式）
                 textElement.innerHTML = originalHTML;
             }
         }
         
-        // 开始打字效果
         typeWriter();
     }
     </script>
