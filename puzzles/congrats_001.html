@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>恭喜！谜题 #001 已解开</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <div class="container">
+        <h1 style="color:#FF0;">✅ 谜题 #001 已解决</h1>
+
+        <div class="terminal">
+            <p>> 恭喜，解谜者！</p>
+            <p>> 你成功破解了爱德华·尼格玛的第一个谜语</p>
+            <div class="separator"></div>
+
+            <div class="congrats-message">
+                <h2>"冰"之谜</h2>
+                <p>你发现了隐藏的真相：看似脆弱的东西，却能摧毁巨轮。</p>
+                <p>这正是尼格玛早期谜语的特点——简单表象下的深刻讽刺。</p>
+                <p><strong>尼格玛的成长记录：</strong> 作为哥谭警局的法医助理，这是他向谜语人转变的第一步。</p>
+            </div>
+
+            <div class="separator"></div>
+            
+            <!-- 视频占位符 - 你可以在这里添加实际的视频 -->
+            <div style="text-align: center; margin: 20px 0;">
+                <p>> 谜语人片段待添加</p>
+                <div style="border: 2px dashed #39FF14; padding: 30px; margin: 20px 0; background: rgba(0,0,0,0.5);">
+                    <p style="color:#8f8;">🎬 此处将显示《哥谭》S01E24的谜语人片段</p>
+                    <p style="font-size:0.9em; color:#666;">20:24-20:28 - 尼格玛的第一个谜语</p>
+                </div>
+                <p><em>（当你准备好视频文件后，将这里的div替换为 &lt;video&gt; 标签）</em></p>
+            </div>
+
+            <div class="separator"></div>
+            
+            <p>> 已解锁: <span style="color:#FF0;">尼格玛早期谜语档案 #001</span></p>
+            <p>> 你的进度: <span id="progress-display">1/15</span></p>
+            
+            <div style="margin: 20px 0; display: flex; gap: 15px; justify-content: center;">
+                <button onclick="location.href='../index.html'" style="background: rgba(57, 255, 20, 0.1); border: 1px solid #39FF14; color: #39FF14; padding: 10px 20px; cursor: pointer; font-family: 'Courier New', monospace;">
+                    返回主页面
+                </button>
+                <button onclick="location.href='puzzle_002.html'" style="background: rgba(57, 255, 20, 0.3); border: 1px solid #FF0; color: #FF0; padding: 10px 20px; cursor: pointer; font-family: 'Courier New', monospace;" disabled>
+                    下一个谜题 (即将开放)
+                </button>
+            </div>
+        </div>
+
+        <p class="footer">"每一个答案都引向另一个问题，亲爱的解谜者。" — R</p>
+    </div>
+
+    <script>
+    // 更新进度显示
+    document.addEventListener('DOMContentLoaded', function() {
+        // 计算已解决的谜题数量
+        let solvedCount = 0;
+        for (let i = 0; i < localStorage.length; i++) {
+            const key = localStorage.key(i);
+            if (key.startsWith('riddle-') && key.endsWith('-solved')) {
+                if (localStorage.getItem(key) === 'true') {
+                    solvedCount++;
+                }
+            }
+        }
+        
+        // 显示进度
+        const progressDisplay = document.getElementById('progress-display');
+        if (progressDisplay) {
+            progressDisplay.textContent = `${solvedCount}/15`;
+            progressDisplay.style.color = solvedCount >= 1 ? '#39FF14' : '#ff3333';
+        }
+        
+        // 确保第一个谜题标记为已解决
+        localStorage.setItem('riddle-001-solved', 'true');
+    });
+    </script>
+
+    <!-- ====== 版权声明 ====== -->
+    <footer class="riddler-footer">
+        <div class="disclaimer-toggle" onclick="toggleDisclaimer()">
+            <span class="disclaimer-icon">ℹ️</span>
+            <span class="disclaimer-title">点击查看法律谜语...</span>
+            <span class="disclaimer-arrow">▼</span>
+        </div>
+        <div id="disclaimer-content" class="disclaimer-content" style="display: none;">
+            <div class="disclaimer-text">
+                <p>问：什么东西既属于百万富翁，又被穷学生使用，能让律师紧张，却保护创作者？</p>
+                <p>答：<span class="riddle-answer">版权法</span>。</p>
+                <br>
+                <p>• 本网站是致敬爱德华·尼格玛的粉丝创作项目</p>
+                <p>• 《哥谭》、谜语人及相关角色版权归属 DC Comics、Warner Bros. Discovery</p>
+                <p>• 所有剧集片段仅用于评论、研究和教育目的</p>
+                <p>• 无任何商业用途，不产生收入</p>
+                <p>• 项目代码开源：<a href="https://github.com/The-Riddler-Ed/The-Riddler-Ed.github.io" target="_blank">GitHub仓库</a></p>
+                <p>• 如有版权问题请联系：<span class="contact">theriddler.ed.project@gmail.com</span></p>
+            </div>
+        </div>
+    </footer>
+
+    <style>
+    /* 版权声明样式 */
+    .riddler-footer {
+        margin-top: 30px;
+        padding: 10px;
+        border-top: 1px solid #39FF14;
+        font-size: 0.8em;
+        text-align: center;
+        color: #8f8;
+        background: rgba(0, 0, 0, 0.7);
+        font-family: 'Courier New', monospace;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .disclaimer-toggle {
+        cursor: pointer;
+        padding: 8px 12px;
+        background: rgba(57, 255, 20, 0.1);
+        border: 1px solid #39FF14;
+        border-radius: 3px;
+        display: inline-block;
+        transition: all 0.3s;
+        color: #39FF14;
+        text-shadow: 0 0 5px #39FF14;
+    }
+
+    .disclaimer-toggle:hover {
+        background: rgba(57, 255, 20, 0.2);
+        box-shadow: 0 0 10px #39FF14;
+        transform: translateY(-2px);
+    }
+
+    .disclaimer-icon {
+        margin-right: 8px;
+        font-size: 1.1em;
+    }
+
+    .disclaimer-title {
+        font-family: 'Courier New', monospace;
+        letter-spacing: 0.5px;
+    }
+
+    .disclaimer-arrow {
+        margin-left: 8px;
+        font-size: 0.8em;
+        transition: transform 0.3s;
+    }
+
+    .disclaimer-content {
+        margin: 15px auto 0;
+        padding: 15px;
+        border: 1px solid #39FF14;
+        background: rgba(0, 20, 0, 0.2);
+        border-radius: 3px;
+        text-align: left;
+        max-width: 650px;
+        box-shadow: 0 0 15px rgba(57, 255, 20, 0.1);
+    }
+
+    .disclaimer-text {
+        color: #8f8;
+        line-height: 1.5;
+        font-size: 0.85em;
+    }
+
+    .disclaimer-text p {
+        margin-bottom: 8px;
+    }
+
+    .riddle-answer {
+        color: #FF0;
+        font-weight: bold;
+        text-shadow: 0 0 5px #FF0;
+    }
+
+    .contact {
+        color: #0FF;
+        font-style: italic;
+    }
+
+    .disclaimer-text a {
+        color: #0FF;
+        text-decoration: none;
+        border-bottom: 1px dotted #0FF;
+        transition: all 0.3s;
+    }
+
+    .disclaimer-text a:hover {
+        color: #FF0;
+        border-bottom: 1px solid #FF0;
+        text-shadow: 0 0 5px #FF0;
+    }
+    </style>
+
+    <script>
+    // 版权声明展开功能
+    function toggleDisclaimer() {
+        const content = document.getElementById('disclaimer-content');
+        const arrow = document.querySelector('.disclaimer-arrow');
+        
+        if (content.style.display === 'none' || content.style.display === '') {
+            content.display = 'block';
+            arrow.textContent = '▲';
+            arrow.style.transform = 'rotate(180deg)';
+            typewriteDisclaimer();
+        } else {
+            content.style.display = 'none';
+            arrow.textContent = '▼';
+            arrow.style.transform = 'rotate(0deg)';
+        }
+    }
+
+    // 打字机效果显示声明文本
+    function typewriteDisclaimer() {
+        const textElement = document.querySelector('.disclaimer-text');
+        const originalHTML = textElement.innerHTML;
+        
+        const tempDiv = document.createElement('div');
+        tempDiv.innerHTML = originalHTML;
+        const plainText = tempDiv.textContent || tempDiv.innerText;
+        
+        textElement.innerHTML = '';
+        textElement.style.opacity = '1';
+        
+        let i = 0;
+        const speed = 35;
+        
+        function typeWriter() {
+            if (i < plainText.length) {
+                textElement.textContent = plainText.substring(0, i);
+                i++;
+                setTimeout(typeWriter, speed);
+            } else {
+                textElement.innerHTML = originalHTML;
+            }
+        }
+        
+        typeWriter();
+    }
+    </script>
+</body>
+</html>
