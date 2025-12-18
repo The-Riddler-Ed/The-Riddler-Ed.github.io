@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>谜题 #001 - 冰</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>谜题 #001</h1>
+
+        <div class="terminal">
+            <p>> 来源：《哥谭》S01E24 20:24-20:28</p>
+            <p>> 难度：初级</p>
+            <div class="separator"></div>
+
+            <div id="riddle-text">
+                <p>什么东西能撞沉轮船，却见不得阳光？</p>
+                <p>（提示：答案是一个字）</p>
+            </div>
+
+            <div class="separator"></div>
+
+            <div class="input-area">
+                <input type="text" id="answer-input" placeholder="在此输入你的答案...">
+                <button id="submit-btn">提交验证</button>
+            </div>
+            <p id="feedback"></p>
+        </div>
+
+        <p class="footer">第一个谜语往往最简单，但也最致命。— R</p>
+    </div>
+
+    <script src="../script.js"></script>
+    
+    <!-- 谜题验证逻辑 -->
+    <script>
+    // 谜题答案
+    const CORRECT_ANSWER = "冰";
+    // 获取页面元素
+    const answerInput = document.getElementById('answer-input');
+    const submitBtn = document.getElementById('submit-btn');
+    const feedbackEl = document.getElementById('feedback');
+
+    // 提交答案的函数
+    function checkAnswer() {
+        const userAnswer = answerInput.value.trim(); // 获取输入并处理
+
+        if (userAnswer === CORRECT_ANSWER) {
+            // 答案正确
+            feedbackEl.textContent = "✅ 正确！冰块能撞沉泰坦尼克，却在阳光下消融。";
+            feedbackEl.style.color = "#39FF14"; // 绿色荧光
+            // 显示下一关链接
+            setTimeout(() => {
+                feedbackEl.innerHTML += '<br><br>> <a href="../index.html" style="color:#39FF14">返回主页面查看进度</a>';
+                // 保存进度到本地存储
+                localStorage.setItem('riddle-001-solved', 'true');
+            }, 1000);
+        } else {
+            // 答案错误
+            feedbackEl.textContent = "❌ 答案错误？解开你脑中的谜再说。";
+            feedbackEl.style.color = "#ff3333"; // 红色
+            // 清空输入框
+            answerInput.value = '';
+            answerInput.focus();
+        }
+    }
+
+    // 为按钮添加点击事件
+    submitBtn.addEventListener('click', checkAnswer);
+    // 为输入框添加回车键事件
+    answerInput.addEventListener('keyup', function(event) {
+        if (event.key === 'Enter') {
+            checkAnswer();
+        }
+    });
+    </script>
+
+    <!-- ====== 同样的版权声明 ====== -->
+    <!-- 复制粘贴你刚才添加到 index.html 的完整版权声明代码 -->
+    <!-- 从 <footer class="riddler-footer"> 开始，到最后的 </script> 结束 -->
+</body>
+</html>

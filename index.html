@@ -5,7 +5,6 @@
     <title>你收到了一条新线索</title>
     <link rel="stylesheet" href="style.css">
     <!-- 引入一个好用的打字机效果库 (关键修正：unpkg) -->
-<script src="typewriter-core.js"></script>
 </head>
 <body>
     <div class="container">
@@ -29,6 +28,174 @@
     </div>
 
     <!-- 链接我们自己的JavaScript文件 -->
-    <script src="script.js"></script>
+    <script src="script.js"></script>    
+    <!-- ====== 谜语人风格版权声明 ====== -->
+    <footer class="riddler-footer">
+        <div class="disclaimer-toggle" onclick="toggleDisclaimer()">
+            <span class="disclaimer-icon">ℹ️</span>
+            <span class="disclaimer-title">点击查看法律谜语...</span>
+            <span class="disclaimer-arrow">▼</span>
+        </div>
+        <div id="disclaimer-content" class="disclaimer-content" style="display: none;">
+            <div class="disclaimer-text">
+                <p>问：什么东西既属于百万富翁，又被穷学生使用，能让律师紧张，却保护创作者？</p>
+                <p>答：<span class="riddle-answer">版权法</span>。</p>
+                <br>
+                <p>• 本网站是致敬爱德华·尼格玛的粉丝创作项目</p>
+                <p>• 《哥谭》、谜语人及相关角色版权归属 DC Comics、Warner Bros. Discovery</p>
+                <p>• 所有剧集片段仅用于评论、研究和教育目的</p>
+                <p>• 无任何商业用途，不产生收入</p>
+                <p>• 项目代码开源：<a href="https://github.com/The-Riddler-Ed/The-Riddler-Ed.github.io" target="_blank">GitHub仓库</a></p>
+                <p>• 如有版权问题请联系：<span class="contact">theriddler.ed.project@gmail.com</span></p>
+            </div>
+        </div>
+    </footer>
+
+    <style>
+    /* 版权声明样式 - 与你的网站主题完全匹配 */
+    .riddler-footer {
+        margin-top: 30px;
+        padding: 10px;
+        border-top: 1px solid #39FF14;
+        font-size: 0.8em;
+        text-align: center;
+        color: #8f8;
+        background: rgba(0, 0, 0, 0.7);
+        font-family: 'Courier New', monospace;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .disclaimer-toggle {
+        cursor: pointer;
+        padding: 8px 12px;
+        background: rgba(57, 255, 20, 0.1);
+        border: 1px solid #39FF14;
+        border-radius: 3px;
+        display: inline-block;
+        transition: all 0.3s;
+        color: #39FF14;
+        text-shadow: 0 0 5px #39FF14;
+    }
+
+    .disclaimer-toggle:hover {
+        background: rgba(57, 255, 20, 0.2);
+        box-shadow: 0 0 10px #39FF14;
+        transform: translateY(-2px);
+    }
+
+    .disclaimer-icon {
+        margin-right: 8px;
+        font-size: 1.1em;
+    }
+
+    .disclaimer-title {
+        font-family: 'Courier New', monospace;
+        letter-spacing: 0.5px;
+    }
+
+    .disclaimer-arrow {
+        margin-left: 8px;
+        font-size: 0.8em;
+        transition: transform 0.3s;
+    }
+
+    .disclaimer-content {
+        margin: 15px auto 0;
+        padding: 15px;
+        border: 1px solid #39FF14;
+        background: rgba(0, 20, 0, 0.2);
+        border-radius: 3px;
+        text-align: left;
+        max-width: 650px;
+        box-shadow: 0 0 15px rgba(57, 255, 20, 0.1);
+    }
+
+    .disclaimer-text {
+        color: #8f8;
+        line-height: 1.5;
+        font-size: 0.85em;
+    }
+
+    .disclaimer-text p {
+        margin-bottom: 8px;
+    }
+
+    .riddle-answer {
+        color: #FF0;
+        font-weight: bold;
+        text-shadow: 0 0 5px #FF0;
+    }
+
+    .contact {
+        color: #0FF;
+        font-style: italic;
+    }
+
+    .disclaimer-text a {
+        color: #0FF;
+        text-decoration: none;
+        border-bottom: 1px dotted #0FF;
+        transition: all 0.3s;
+    }
+
+    .disclaimer-text a:hover {
+        color: #FF0;
+        border-bottom: 1px solid #FF0;
+        text-shadow: 0 0 5px #FF0;
+    }
+    </style>
+
+    <script>
+    // 版权声明展开功能
+    function toggleDisclaimer() {
+        const content = document.getElementById('disclaimer-content');
+        const arrow = document.querySelector('.disclaimer-arrow');
+        
+        if (content.style.display === 'none' || content.style.display === '') {
+            content.style.display = 'block';
+            arrow.textContent = '▲';
+            arrow.style.transform = 'rotate(180deg)';
+            // 打字机效果显示文本
+            typewriteDisclaimer();
+        } else {
+            content.style.display = 'none';
+            arrow.textContent = '▼';
+            arrow.style.transform = 'rotate(0deg)';
+        }
+    }
+
+    // 打字机效果显示声明文本
+    function typewriteDisclaimer() {
+        const textElement = document.querySelector('.disclaimer-text');
+        const originalHTML = textElement.innerHTML;
+        
+        // 保存原始HTML结构
+        const tempDiv = document.createElement('div');
+        tempDiv.innerHTML = originalHTML;
+        const plainText = tempDiv.textContent || tempDiv.innerText;
+        
+        // 清空并开始打字效果
+        textElement.innerHTML = '';
+        textElement.style.opacity = '1';
+        
+        let i = 0;
+        const speed = 35; // 打字速度（毫秒/字符）
+        
+        function typeWriter() {
+            if (i < plainText.length) {
+                textElement.textContent = plainText.substring(0, i);
+                i++;
+                setTimeout(typeWriter, speed);
+            } else {
+                // 动画结束后恢复完整HTML（带样式）
+                textElement.innerHTML = originalHTML;
+            }
+        }
+        
+        // 开始打字效果
+        typeWriter();
+    }
+    </script>
 </body>
 </html>
