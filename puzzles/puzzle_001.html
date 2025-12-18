@@ -2,7 +2,7 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <title>谜题 #001 - 冰</title>
+    <title>谜题 #001</title>
     <link rel="stylesheet" href="../style.css">
 </head>
 <body>
@@ -12,11 +12,12 @@
         <div class="terminal">
             <p>> 来源：《哥谭》S01E24 20:24-20:28</p>
             <p>> 难度：初级</p>
+            <p>> 爱德华·尼格玛早期谜语</p>
             <div class="separator"></div>
 
             <div id="riddle-text">
-                <p>什么东西能撞沉轮船，却见不得阳光？</p>
-                <p>（提示：答案是一个字）</p>
+                <p style="font-size: 1.2em; line-height: 1.6;"><strong>什么东西能撞沉轮船，却见不得阳光？</strong></p>
+                <p style="color: #8f8;">（提示：答案是一个汉字）</p>
             </div>
 
             <div class="separator"></div>
@@ -28,11 +29,9 @@
             <p id="feedback"></p>
         </div>
 
-        <p class="footer">第一个谜语往往最简单，但也最致命。— R</p>
+        <p class="footer">"第一个谜语往往最简单，但也最致命。" — 爱德华·尼格玛</p>
     </div>
 
-    <script src="../script.js"></script>
-    
     <!-- 谜题验证逻辑 -->
     <script>
     // 谜题答案
@@ -44,22 +43,25 @@
 
     // 提交答案的函数
     function checkAnswer() {
-        const userAnswer = answerInput.value.trim(); // 获取输入并处理
+        const userAnswer = answerInput.value.trim();
 
         if (userAnswer === CORRECT_ANSWER) {
             // 答案正确
             feedbackEl.textContent = "✅ 正确！冰块能撞沉泰坦尼克，却在阳光下消融。";
-            feedbackEl.style.color = "#39FF14"; // 绿色荧光
-            // 显示下一关链接
+            feedbackEl.style.color = "#39FF14";
+            
+            // 保存进度到本地存储
+            localStorage.setItem('riddle-001-solved', 'true');
+            
+            // 2秒后跳转到恭喜页面
             setTimeout(() => {
-                feedbackEl.innerHTML += '<br><br>> <a href="../index.html" style="color:#39FF14">返回主页面查看进度</a>';
-                // 保存进度到本地存储
-                localStorage.setItem('riddle-001-solved', 'true');
-            }, 1000);
+                window.location.href = 'congrats_001.html';
+            }, 2000);
         } else {
             // 答案错误
-            feedbackEl.textContent = "❌ 答案错误？解开你脑中的谜再说。";
-            feedbackEl.style.color = "#ff3333"; // 红色
+            feedbackEl.textContent = "❌ 答案错误。再仔细想想。";
+            feedbackEl.style.color = "#ff3333";
+            
             // 清空输入框
             answerInput.value = '';
             answerInput.focus();
@@ -74,10 +76,173 @@
             checkAnswer();
         }
     });
+    
+    // 页面加载时聚焦输入框
+    answerInput.focus();
     </script>
 
-    <!-- ====== 同样的版权声明 ====== -->
-    <!-- 复制粘贴你刚才添加到 index.html 的完整版权声明代码 -->
-    <!-- 从 <footer class="riddler-footer"> 开始，到最后的 </script> 结束 -->
+    <!-- ====== 版权声明 ====== -->
+    <footer class="riddler-footer">
+        <div class="disclaimer-toggle" onclick="toggleDisclaimer()">
+            <span class="disclaimer-icon">ℹ️</span>
+            <span class="disclaimer-title">点击查看法律谜语...</span>
+            <span class="disclaimer-arrow">▼</span>
+        </div>
+        <div id="disclaimer-content" class="disclaimer-content" style="display: none;">
+            <div class="disclaimer-text">
+                <p>问：什么东西既属于百万富翁，又被穷学生使用，能让律师紧张，却保护创作者？</p>
+                <p>答：<span class="riddle-answer">版权法</span>。</p>
+                <br>
+                <p>• 本网站是致敬爱德华·尼格玛的粉丝创作项目</p>
+                <p>• 《哥谭》、谜语人及相关角色版权归属 DC Comics、Warner Bros. Discovery</p>
+                <p>• 所有剧集片段仅用于评论、研究和教育目的</p>
+                <p>• 无任何商业用途，不产生收入</p>
+                <p>• 项目代码开源：<a href="https://github.com/The-Riddler-Ed/The-Riddler-Ed.github.io" target="_blank">GitHub仓库</a></p>
+                <p>• 如有版权问题请联系：<span class="contact">theriddler.ed.project@gmail.com</span></p>
+            </div>
+        </div>
+    </footer>
+
+    <style>
+    /* 版权声明样式 - 与主页一致 */
+    .riddler-footer {
+        margin-top: 30px;
+        padding: 10px;
+        border-top: 1px solid #39FF14;
+        font-size: 0.8em;
+        text-align: center;
+        color: #8f8;
+        background: rgba(0, 0, 0, 0.7);
+        font-family: 'Courier New', monospace;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .disclaimer-toggle {
+        cursor: pointer;
+        padding: 8px 12px;
+        background: rgba(57, 255, 20, 0.1);
+        border: 1px solid #39FF14;
+        border-radius: 3px;
+        display: inline-block;
+        transition: all 0.3s;
+        color: #39FF14;
+        text-shadow: 0 0 5px #39FF14;
+    }
+
+    .disclaimer-toggle:hover {
+        background: rgba(57, 255, 20, 0.2);
+        box-shadow: 0 0 10px #39FF14;
+        transform: translateY(-2px);
+    }
+
+    .disclaimer-icon {
+        margin-right: 8px;
+        font-size: 1.1em;
+    }
+
+    .disclaimer-title {
+        font-family: 'Courier New', monospace;
+        letter-spacing: 0.5px;
+    }
+
+    .disclaimer-arrow {
+        margin-left: 8px;
+        font-size: 0.8em;
+        transition: transform 0.3s;
+    }
+
+    .disclaimer-content {
+        margin: 15px auto 0;
+        padding: 15px;
+        border: 1px solid #39FF14;
+        background: rgba(0, 20, 0, 0.2);
+        border-radius: 3px;
+        text-align: left;
+        max-width: 650px;
+        box-shadow: 0 0 15px rgba(57, 255, 20, 0.1);
+    }
+
+    .disclaimer-text {
+        color: #8f8;
+        line-height: 1.5;
+        font-size: 0.85em;
+    }
+
+    .disclaimer-text p {
+        margin-bottom: 8px;
+    }
+
+    .riddle-answer {
+        color: #FF0;
+        font-weight: bold;
+        text-shadow: 0 0 5px #FF0;
+    }
+
+    .contact {
+        color: #0FF;
+        font-style: italic;
+    }
+
+    .disclaimer-text a {
+        color: #0FF;
+        text-decoration: none;
+        border-bottom: 1px dotted #0FF;
+        transition: all 0.3s;
+    }
+
+    .disclaimer-text a:hover {
+        color: #FF0;
+        border-bottom: 1px solid #FF0;
+        text-shadow: 0 0 5px #FF0;
+    }
+    </style>
+
+    <script>
+    // 版权声明展开功能
+    function toggleDisclaimer() {
+        const content = document.getElementById('disclaimer-content');
+        const arrow = document.querySelector('.disclaimer-arrow');
+        
+        if (content.style.display === 'none' || content.style.display === '') {
+            content.style.display = 'block';
+            arrow.textContent = '▲';
+            arrow.style.transform = 'rotate(180deg)';
+            typewriteDisclaimer();
+        } else {
+            content.style.display = 'none';
+            arrow.textContent = '▼';
+            arrow.style.transform = 'rotate(0deg)';
+        }
+    }
+
+    // 打字机效果显示声明文本
+    function typewriteDisclaimer() {
+        const textElement = document.querySelector('.disclaimer-text');
+        const originalHTML = textElement.innerHTML;
+        
+        const tempDiv = document.createElement('div');
+        tempDiv.innerHTML = originalHTML;
+        const plainText = tempDiv.textContent || tempDiv.innerText;
+        
+        textElement.innerHTML = '';
+        textElement.style.opacity = '1';
+        
+        let i = 0;
+        const speed = 35;
+        
+        function typeWriter() {
+            if (i < plainText.length) {
+                textElement.textContent = plainText.substring(0, i);
+                i++;
+                setTimeout(typeWriter, speed);
+            } else {
+                textElement.innerHTML = originalHTML;
+            }
+        }
+        
+        typeWriter();
+    }
+    </script>
 </body>
 </html>
